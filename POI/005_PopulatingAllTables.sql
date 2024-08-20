@@ -105,7 +105,7 @@ INSERT INTO [dbo].[LocationPolygon](
 )
 SELECT temp.[LocationID]
 	   , temp.[polygon_wkt]				       AS [WKTPolygonString] 
-	   , CAST(temp.[polygon_wkt] AS GEOGRAPHY) AS [WKTPolygonGeog]
+	   , GEOGRAPHY::STGeomFromText(temp.[polygon_wkt], 4326) AS [WKTPolygonGeog]
 	   , [POI_ID]
 FROM(
 	SELECT DISTINCT p.[LocationID]
